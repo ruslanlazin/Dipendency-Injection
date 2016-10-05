@@ -27,18 +27,19 @@ public class Selector {
     }
 
     public void prepareAndPrint(String name) {
-        name = upcaser.upcaseSentence(name);
-        NationalityTypes nationality = nationalityDetector.getNationality(name);
+        String uncasedName = upcaser.upcaseSentence(name);
+        NationalityTypes nationality = nationalityDetector.getNationality(uncasedName);
         switch (nationality) {
             case US:
-                name = usGreeting.greet(name);
+                uncasedName = usGreeting.greet(uncasedName);
                 break;
             case JAPAN:
-                name = japanGreeting.greet(name);
+                uncasedName = japanGreeting.greet(uncasedName);
                 break;
             case UNDEFINED:
-                name = mainGreeting.greet(name);
+                uncasedName = mainGreeting.greet(uncasedName);
         }
-        myPrinter.printSentence(name);
+        myPrinter.printSentence(uncasedName);
     }
+
 }
